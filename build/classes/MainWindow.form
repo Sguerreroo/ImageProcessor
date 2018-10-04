@@ -208,11 +208,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Suavizado"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="smoothingActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="enhancement">
           <Properties>
             <Property name="text" type="java.lang.String" value="Realce"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enhancementActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

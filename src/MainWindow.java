@@ -123,8 +123,18 @@ public class MainWindow extends javax.swing.JFrame {
         filterSelector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         smoothing.setText("Suavizado");
+        smoothing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smoothingActionPerformed(evt);
+            }
+        });
 
         enhancement.setText("Realce");
+        enhancement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enhancementActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout filterSelectorLayout = new javax.swing.GroupLayout(filterSelector);
         filterSelector.setLayout(filterSelectorLayout);
@@ -178,24 +188,45 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void crabImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crabImageActionPerformed
         BufferedImage bI = getImage("Images\\crab.jpg");
-        checkFilters(bI);
+        bI = checkFilters(bI);
         canvas.setBufferImage(bI);
+        canvas.setPath("Images\\crab.jpg");
         repaint();
     }//GEN-LAST:event_crabImageActionPerformed
 
     private void slothImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slothImageActionPerformed
         BufferedImage bI = getImage("Images\\sloth.jpg");
-        checkFilters(bI);
+        bI = checkFilters(bI);
         canvas.setBufferImage(bI);
+        canvas.setPath("Images\\sloth.jpg");
         repaint();
     }//GEN-LAST:event_slothImageActionPerformed
 
     private void lemurImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemurImageActionPerformed
         BufferedImage bI = getImage("Images\\lemur.jpg");
-        checkFilters(bI);
+        bI = checkFilters(bI);
         canvas.setBufferImage(bI);
+        canvas.setPath("Images\\lemur.jpg");
         repaint();
     }//GEN-LAST:event_lemurImageActionPerformed
+
+    private void smoothingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothingActionPerformed
+        String path = canvas.getPath();
+        BufferedImage bI = getImage(path);
+        bI = checkFilters(bI);
+        canvas.setBufferImage(bI);
+        canvas.setPath(path);
+        repaint();
+    }//GEN-LAST:event_smoothingActionPerformed
+
+    private void enhancementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enhancementActionPerformed
+        String path = canvas.getPath();
+        BufferedImage bI = getImage(path);
+        bI = checkFilters(bI);
+        canvas.setBufferImage(bI);
+        canvas.setPath(path);
+        repaint();
+    }//GEN-LAST:event_enhancementActionPerformed
 
     private BufferedImage getImage(String path) {
         BufferedImage bI = null;
@@ -205,12 +236,12 @@ public class MainWindow extends javax.swing.JFrame {
         return bI;
     }
     
-    private void checkFilters(BufferedImage bI) {
+    private BufferedImage checkFilters(BufferedImage bI) {
         if (smoothing.isSelected()) {
-            System.out.println("Hola");
             bI = smoothImageFilter(bI);
         }
         if (enhancement.isSelected()) bI = enhancementImageFilter(bI);
+        return bI;
     }
     
     private BufferedImage smoothImageFilter(BufferedImage bI) {
