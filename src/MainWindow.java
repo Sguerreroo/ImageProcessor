@@ -212,6 +212,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void smoothingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothingActionPerformed
         String path = canvas.getPath();
+        if(path==null)return;
         BufferedImage bI = getImage(path);
         bI = checkFilters(bI);
         canvas.setBufferImage(bI);
@@ -221,6 +222,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void enhancementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enhancementActionPerformed
         String path = canvas.getPath();
+        if(path==null)return;
         BufferedImage bI = getImage(path);
         bI = checkFilters(bI);
         canvas.setBufferImage(bI);
