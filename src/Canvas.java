@@ -5,6 +5,7 @@ import javax.swing.JPanel;
 public class Canvas extends JPanel {
     
     private BufferedImage currentImage;
+    private String imagePath;
     
     @Override
     public void paintComponent(Graphics g) {        
@@ -14,4 +15,13 @@ public class Canvas extends JPanel {
     void setBufferImage(BufferedImage bI) {
         this.currentImage = bI;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+    
 }

@@ -1,8 +1,9 @@
-
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.awt.image.ConvolveOp;
 import java.awt.image.Kernel;
 import java.io.File;
+import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /*
@@ -45,6 +46,7 @@ public class MainWindow extends javax.swing.JFrame {
         enhancement = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 500));
 
         imagePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -52,7 +54,7 @@ public class MainWindow extends javax.swing.JFrame {
         canvas.setLayout(canvasLayout);
         canvasLayout.setHorizontalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 589, Short.MAX_VALUE)
+            .addGap(0, 586, Short.MAX_VALUE)
         );
         canvasLayout.setVerticalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,8 +125,18 @@ public class MainWindow extends javax.swing.JFrame {
         filterSelector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         smoothing.setText("Suavizado");
+        smoothing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                smoothingActionPerformed(evt);
+            }
+        });
 
         enhancement.setText("Realce");
+        enhancement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enhancementActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout filterSelectorLayout = new javax.swing.GroupLayout(filterSelector);
         filterSelector.setLayout(filterSelectorLayout);
@@ -135,7 +147,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(smoothing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(enhancement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         filterSelectorLayout.setVerticalGroup(
             filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,7 +156,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(smoothing)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enhancement)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,40 +189,47 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crabImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crabImageActionPerformed
-        BufferedImage bI = getImage("Images\\crab.jpg");
-        checkFilters(bI);
-        canvas.setBufferImage(bI);
-        repaint();
+        changeImage("Images\\crab.jpg");
     }//GEN-LAST:event_crabImageActionPerformed
 
     private void slothImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slothImageActionPerformed
-        BufferedImage bI = getImage("Images\\sloth.jpg");
-        checkFilters(bI);
-        canvas.setBufferImage(bI);
-        repaint();
+        changeImage("Images\\sloth.jpg");
     }//GEN-LAST:event_slothImageActionPerformed
 
     private void lemurImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemurImageActionPerformed
-        BufferedImage bI = getImage("Images\\lemur.jpg");
-        checkFilters(bI);
-        canvas.setBufferImage(bI);
-        repaint();
+        changeImage("Images\\lemur.jpg");
     }//GEN-LAST:event_lemurImageActionPerformed
 
+    private void smoothingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothingActionPerformed
+        if (canvas.getImagePath() != null) updateImage();
+    }//GEN-LAST:event_smoothingActionPerformed
+
+    private void enhancementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enhancementActionPerformed
+        if (canvas.getImagePath() != null) updateImage();
+    }//GEN-LAST:event_enhancementActionPerformed
+
+    private void changeImage(String imagePath) {
+        canvas.setImagePath(imagePath);
+        updateImage();
+    }
+    
+    private void updateImage() {
+        canvas.setBufferImage(checkFilters(getImage(canvas.getImagePath())));
+        repaint();
+    }
+    
     private BufferedImage getImage(String path) {
         BufferedImage bI = null;
         try {
             bI = ImageIO.read(new File(path));
-        } catch(Exception e) {}
+        } catch(IOException e) {}
         return bI;
     }
     
-    private void checkFilters(BufferedImage bI) {
-        if (smoothing.isSelected()) {
-            System.out.println("Hola");
-            bI = smoothImageFilter(bI);
-        }
+    private BufferedImage checkFilters(BufferedImage bI) {
+        if (smoothing.isSelected()) bI = smoothImageFilter(bI);
         if (enhancement.isSelected()) bI = enhancementImageFilter(bI);
+        return bI;
     }
     
     private BufferedImage smoothImageFilter(BufferedImage bI) {
