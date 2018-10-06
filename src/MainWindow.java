@@ -44,9 +44,13 @@ public class MainWindow extends javax.swing.JFrame {
         filterSelector = new javax.swing.JPanel();
         smoothing = new javax.swing.JCheckBox();
         enhancement = new javax.swing.JCheckBox();
+        imageSelectorInformationLabel = new javax.swing.JLabel();
+        filterSelectorInformationLabel = new javax.swing.JLabel();
+        groupComponentNames = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 500));
+        setMinimumSize(new java.awt.Dimension(800, 530));
+        setPreferredSize(new java.awt.Dimension(800, 520));
 
         imagePanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -54,7 +58,7 @@ public class MainWindow extends javax.swing.JFrame {
         canvas.setLayout(canvasLayout);
         canvasLayout.setHorizontalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 586, Short.MAX_VALUE)
+            .addGap(0, 416, Short.MAX_VALUE)
         );
         canvasLayout.setVerticalGroup(
             canvasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -102,24 +106,24 @@ public class MainWindow extends javax.swing.JFrame {
         imageSelector.setLayout(imageSelectorLayout);
         imageSelectorLayout.setHorizontalGroup(
             imageSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, imageSelectorLayout.createSequentialGroup()
+            .addGroup(imageSelectorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(imageSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lemurImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(crabImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(slothImage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(imageSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(crabImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(slothImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lemurImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         imageSelectorLayout.setVerticalGroup(
             imageSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(imageSelectorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(crabImage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(crabImage, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(slothImage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lemurImage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(slothImage, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addComponent(lemurImage, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         filterSelector.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -144,20 +148,26 @@ public class MainWindow extends javax.swing.JFrame {
             filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(filterSelectorLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(smoothing, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(enhancement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap())
         );
         filterSelectorLayout.setVerticalGroup(
             filterSelectorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(filterSelectorLayout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(smoothing)
+                .addContainerGap()
+                .addComponent(smoothing, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enhancement)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addComponent(enhancement, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        imageSelectorInformationLabel.setText("Seleccione la imagen que quiera visualizar:");
+
+        filterSelectorInformationLabel.setText("Seleccione el filtro que desea aplicar a la imagen:");
+
+        groupComponentNames.setText("Nelson González Machín, Samuel Guerra Marrero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,19 +179,32 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imageSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(filterSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(filterSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(imageSelectorInformationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addGap(39, 39, 39))
+                    .addComponent(filterSelectorInformationLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(groupComponentNames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(imageSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(filterSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(imagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(imageSelectorInformationLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(imageSelector, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(filterSelectorInformationLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(filterSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(groupComponentNames)))
                 .addContainerGap())
         );
 
@@ -189,15 +212,18 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void crabImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crabImageActionPerformed
-        changeImage("Images\\crab.jpg");
+        resetFilters();
+        changeToOriginalImage("Images\\crab.jpg");
     }//GEN-LAST:event_crabImageActionPerformed
 
     private void slothImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_slothImageActionPerformed
-        changeImage("Images\\sloth.jpg");
+        resetFilters();
+        changeToOriginalImage("Images\\sloth.jpg");
     }//GEN-LAST:event_slothImageActionPerformed
 
     private void lemurImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lemurImageActionPerformed
-        changeImage("Images\\lemur.jpg");
+        resetFilters();
+        changeToOriginalImage("Images\\lemur.jpg");
     }//GEN-LAST:event_lemurImageActionPerformed
 
     private void smoothingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_smoothingActionPerformed
@@ -208,14 +234,20 @@ public class MainWindow extends javax.swing.JFrame {
         if (canvas.getImagePath() != null) updateImage();
     }//GEN-LAST:event_enhancementActionPerformed
 
-    private void changeImage(String imagePath) {
+    private void changeToOriginalImage(String imagePath) {
         canvas.setImagePath(imagePath);
-        updateImage();
+        canvas.setBufferImage(getImage(canvas.getImagePath()));
+        repaint();
     }
     
     private void updateImage() {
         canvas.setBufferImage(checkFilters(getImage(canvas.getImagePath())));
         repaint();
+    }
+    
+    private void resetFilters() {
+        smoothing.setSelected(false);
+        enhancement.setSelected(false);
     }
     
     private BufferedImage getImage(String path) {
@@ -295,8 +327,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton crabImage;
     private javax.swing.JCheckBox enhancement;
     private javax.swing.JPanel filterSelector;
+    private javax.swing.JLabel filterSelectorInformationLabel;
+    private javax.swing.JLabel groupComponentNames;
     private javax.swing.JPanel imagePanel;
     private javax.swing.JPanel imageSelector;
+    private javax.swing.JLabel imageSelectorInformationLabel;
     private javax.swing.JRadioButton lemurImage;
     private javax.swing.ButtonGroup radioButtonGroup;
     private javax.swing.JRadioButton slothImage;
